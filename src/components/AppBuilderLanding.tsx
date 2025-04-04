@@ -1,66 +1,52 @@
-import { useState } from "react";
-import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Link } from "react-router-dom";
 
-export default function AppBuilderLanding() {
-  const [appName, setAppName] = useState("");
-  const [dxApiUrl, setDxApiUrl] = useState("");
-  const [authMethod, setAuthMethod] = useState("");
-
-  const handleGenerate = () => {
-    alert(`App '${appName}' using DX API at '${dxApiUrl}' generated!`);
-  };
-
+export default function AppBuilderLanding({
+  onStart,
+}: {
+  onStart: () => void;
+}) {
   return (
-    <div className="p-12 grid gap-6 max-w-2xl mx-auto">
-      <h1 className="text-4xl font-bold text-center flex items-center justify-center gap-2">
-        <img src="/logo.svg" alt="Logo" className="" />
-        Beetle
-      </h1>
-      <p className="font-medium text-center flex items-center justify-center gap-2">
-        Building customized frontend for Pega applications
-      </p>
-      <Card>
-        <CardContent className="grid gap-4 py-4">
-          <div>
-            <label className="block text-sm font-medium">
-              Application Name
-            </label>
-            <Input
-              placeholder="Enter app name"
-              value={appName}
-              onChange={(e) => setAppName(e.target.value)}
+    <div className="min-h-screen flex items-center justify-center bg-gradient-to-r from-gray-900 to-gray-800 text-white p-6 relative overflow-hidden">
+      <div className="absolute inset-0 opacity-20 pointer-events-none animate-fade-in-slow">
+        <svg
+          className="w-full h-full"
+          xmlns="http://www.w3.org/2000/svg"
+          preserveAspectRatio="none"
+          viewBox="0 0 800 600"
+        >
+          <g fill="#1e90ff" fillOpacity="0.15">
+            <circle cx="500" cy="350" r="300" className="animate-slow-pulse" />
+            <circle cx="250" cy="200" r="120" className="animate-slow-pulse" />
+            <circle cx="650" cy="450" r="180" className="animate-slow-pulse" />
+          </g>
+        </svg>
+      </div>
+
+      <div className="max-w-3xl text-center space-y-8 relative z-10 animate-slide-up">
+        <div className="space-y-4">
+          <div className="flex items-center justify-center gap-4 animate-zoom-in">
+            <img
+              src="/logo-light.svg"
+              alt="Beetle Logo"
+              className="w-20 h-20 animate-bounce"
             />
+            <h1 className="text-8xl md:text-8xl py-8 font-extrabold tracking-tight animate-flip-up">
+              Beetle
+            </h1>
           </div>
-          <div>
-            <label className="block text-sm font-medium">DX API URL</label>
-            <Input
-              placeholder="https://your-pega-server/prweb/api/v1"
-              value={dxApiUrl}
-              onChange={(e) => setDxApiUrl(e.target.value)}
-            />
-          </div>
-          <div>
-            <label className="block text-sm font-medium">Auth Method</label>
-            <Input
-              placeholder="OAuth, Basic, etc."
-              value={authMethod}
-              onChange={(e) => setAuthMethod(e.target.value)}
-            />
-          </div>
-          <Button
-            onClick={handleGenerate}
-            className="flex w-full justify-center rounded-md bg-zinc-600 px-3 py-2.5 text-sm/6 font-semibold text-white shadow-xs hover:bg-zinc-500 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-zinc-600"
-          >
-            Generate App
-          </Button>
-          <Link to="/builder" className="text-indigo-600 underline text-center">
-            Go to Page Builder →
-          </Link>
-        </CardContent>
-      </Card>
+          <p className="text-gray-300 text-lg max-w-xl mx-auto animate-fade-up delay-300">
+            Quickly design beautiful, custom frontends for your Pega
+            applications with full DX API and Constellation compatibility.
+          </p>
+        </div>
+
+        <Button
+          className="text-lg px-8 py-6 bg-white text-gray-900 font-semibold rounded shadow-md hover:bg-gray-100 hover:scale-105 transform transition-transform duration-300 ease-in-out animate-glow"
+          onClick={onStart}
+        >
+          Start Building
+        </Button>
+      </div>
     </div>
   );
 }
